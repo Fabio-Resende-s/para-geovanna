@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Para Geovanna ❤️</title>
     <link rel="icon" href="img/geovanna.jpg">
-<meta name="theme-color" content="#ff4d6d">
+    <meta name="theme-color" content="#ff4d6d">
     <style>
         * {
             margin: 0;
@@ -132,7 +132,7 @@
 
         /* Conteúdo da mensagem e coração */
         .message-area {
-            padding: 28px 28px 38px;
+            padding: 28px 28px 20px;
             text-align: center;
             background: white;
         }
@@ -159,7 +159,7 @@
             background: #fff7f5;
             padding: 18px 16px;
             border-radius: 48px;
-            margin: 20px 0 24px;
+            margin: 20px 0 16px;
             box-shadow: inset 0 1px 4px #ffdad2, 0 4px 12px rgba(0,0,0,0.02);
             font-weight: 500;
         }
@@ -172,7 +172,7 @@
             font-size: 1rem;
             font-style: italic;
             color: #c75c6e;
-            margin-top: 6px;
+            margin-top: 12px;
         }
 
         .btn-surpresa {
@@ -186,7 +186,7 @@
             cursor: pointer;
             transition: 0.25s;
             box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
-            margin-top: 8px;
+            margin: 12px 0 8px;
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -250,6 +250,14 @@
             color: white;
         }
 
+        footer {
+            font-size: 0.7rem;
+            text-align: center;
+            background: white;
+            padding: 0px 0 20px 0;
+            color: #d47b8a;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -277,6 +285,31 @@
             to { transform: scale(1); opacity: 1; }
         }
 
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         /* responsivo */
         @media (max-width: 550px) {
             .card {
@@ -297,57 +330,26 @@
                 font-size: 20px;
             }
         }
-        footer {
-            font-size: 0.7rem;
-            text-align: center;
-            background: white;
-            padding-bottom: 16px;
-            color: #d47b8a;
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.4rem;
+            }
+            .special-message {
+                font-size: 0.95rem;
+                padding: 15px;
+                border-radius: 30px;
+            }
+            .btn-surpresa {
+                width: 100%;
+                justify-content: center;
+            }
         }
 
-     
-/* todo o seu CSS atual */
-
-/* Cole aqui embaixo */
-
-.card{
-    animation: aparecer 1s ease;
-}
-
-@keyframes aparecer{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.carousel-slide img{
-    aspect-ratio: 4/5;
-    object-fit: cover;
-}
-
-@media (max-width:480px){
-    h2{
-        font-size:1.4rem;
-    }
-
-    .special-message{
-        font-size:0.95rem;
-        padding:15px;
-        border-radius:30px;
-    }
-
-    .btn-surpresa{
-        width:100%;
-        justify-content:center;
-    }
-}
-
-
+        .carousel-slide img {
+            aspect-ratio: 4/5;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
@@ -356,8 +358,7 @@
     <!-- Carrossel com 4 fotos -->
     <div class="carousel-container">
         <div class="carousel-slider" id="carouselSlider">
-            <!-- As 4 imagens: você deve substituir os links pelas suas fotos -->
-            <!-- Exemplo com placeholders românticos (substitua pelos seus próprios links de imagem ou caminhos locais caso for hospedar) -->
+            <!-- ⚠️ ATENÇÃO: Substitua os links das imagens pelas suas fotos! ⚠️ -->
             <div class="carousel-slide">
                 <img src="img/imagem1.jpg" alt="Momento especial 1">
             </div>
@@ -370,6 +371,9 @@
             <div class="carousel-slide">
                 <img src="img/imagem4.jpeg" alt="Momento especial 4">
             </div>
+            <div class="carousel-slide">
+                <img src="img/WhatsApp Image 2026-06-03 at 12.01.09.jpeg" alt="Momento especial 4">
+            </div>
         </div>
         <button class="carousel-btn btn-prev" id="prevBtn">‹</button>
         <button class="carousel-btn btn-next" id="nextBtn">›</button>
@@ -380,42 +384,30 @@
         <div class="heart-icon">❤️‍🔥</div>
         <h2>Feliz Dia dos Namorados!</h2>
         <div class="special-message">
-    <p>✨ Algumas pessoas aparecem de forma inesperada e conseguem deixar os dias mais leves. ✨</p>
-
-    <p>Mesmo que ainda estejamos nos conhecendo, eu quis criar algo especial para registrar o quanto gosto das nossas conversas e dos momentos compartilhados.</p>
-
-    <p>Seu jeito, sua simpatia e sua alegria fazem diferença, e cada mensagem sua sempre traz um sorriso para o meu rosto. 😊</p>
-
-    <p>Que a vida continue nos proporcionando bons momentos, muitas risadas e lembranças bonitas para guardar.</p>
-
-    <p>🌹 Esta pequena homenagem foi feita com carinho especialmente para você. 🌹</p>
-
-    <div class="name-sign">— Com carinho, Fábio ❤️</div>
-</div>
-            <div class="name-sign">— Com carinho, Fábio 😊💌</div>
+            <p>✨ Algumas pessoas aparecem de forma inesperada e conseguem deixar os dias mais leves. ✨</p>
+            <p>Mesmo que ainda estejamos nos conhecendo, eu quis criar algo especial para registrar o quanto gosto das nossas conversas e dos momentos compartilhados.</p>
+            <p>Seu jeito, sua simpatia e sua alegria fazem diferença, e cada mensagem sua sempre traz um sorriso para o meu rosto. 😊</p>
+            <p>Que a vida continue nos proporcionando bons momentos, muitas risadas e lembranças bonitas para guardar.</p>
+            <p>🌹 Esta pequena homenagem foi feita com carinho especialmente para você. 🌹</p>
         </div>
+        <div class="name-sign">— Com carinho, Fábio 😊💌</div>
+        
         <button class="btn-surpresa" id="surpresaBtn">🎁 Surpresa Especial 🎁</button>
     </div>
-    <footer> feito com todo amor para você ❤️</footer>
+    
+    <footer>feito com todo amor para você ❤️</footer>
 </div>
 
 <!-- Modal surpresa -->
 <div id="surpresaModal" class="modal">
     <div class="modal-content">
-    <h3>💖 Para Você 💖</h3>
-
-    <p>Nem sempre as melhores conexões começam de forma planejada.</p>
-
-    <p>Às vezes elas surgem em uma conversa simples e vão tornando os dias mais especiais aos poucos.</p>
-
-    <p>Obrigado por fazer parte dos meus dias e por cada conversa compartilhada. 😊🌻</p>
-
-    <div style="font-size: 2rem;">🥰🌹✨</div>
-
-    <button class="close-modal" id="closeModalBtn">
-        Fechar ❤️
-    </button>
-</div>
+        <h3>💖 Para Você 💖</h3>
+        <p>Nem sempre as melhores conexões começam de forma planejada.</p>
+        <p>Às vezes elas surgem em uma conversa simples e vão tornando os dias mais especiais aos poucos.</p>
+        <p>Obrigado por fazer parte dos meus dias e por cada conversa compartilhada. 😊🌻</p>
+        <div style="font-size: 2rem;">🥰🌹✨</div>
+        <button class="close-modal" id="closeModalBtn">Fechar ❤️</button>
+    </div>
 </div>
 
 <script>
@@ -426,7 +418,7 @@
     const nextButton = document.getElementById('nextBtn');
     const dotsContainer = document.getElementById('dotsContainer');
     let currentIndex = 0;
-    const totalSlides = slides.length; // deve ser 4
+    const totalSlides = slides.length;
 
     // Criar pontos indicadores
     function createDots() {
@@ -466,7 +458,6 @@
         if (currentIndex + 1 < totalSlides) {
             goToSlide(currentIndex + 1);
         } else {
-            // opcional: loop suave
             goToSlide(0);
         }
     }
@@ -487,7 +478,7 @@
     createDots();
     goToSlide(0);
 
-    // Opcional: arraste no mobile? não necessário, mas podemos permitir toque simples.
+    // Suporte a toque no mobile
     let touchStartX = 0;
     slider.parentElement.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
@@ -511,8 +502,6 @@
 
     function openModal() {
         modal.style.display = 'flex';
-        // Efeito sonoro opcional? não coloquei som pra não assustar, mas podemos dar um trigger confete simples?
-        // Vamos criar mini confetes virtuais (só por diversão)
         createConfetti();
     }
 
@@ -528,7 +517,7 @@
         }
     });
 
-    // Confetes surpresa simples ao abrir modal (deixa mais festivo)
+    // Confetes surpresa
     function createConfetti() {
         const confettiContainer = document.createElement('div');
         confettiContainer.style.position = 'fixed';
@@ -557,49 +546,15 @@
             confettiContainer.appendChild(conf);
         }
 
-        // adiciona keyframe temporário
-        if (!document.querySelector('#confettiKeyframe')) {
-            const styleSheet = document.createElement('style');
-            styleSheet.id = 'confettiKeyframe';
-            styleSheet.textContent = `
-                @keyframes fall {
-                    0% {
-                        transform: translateY(0) rotate(0deg);
-                        opacity: 1;
-                    }
-                    80% {
-                        opacity: 0.8;
-                    }
-                    100% {
-                        transform: translateY(100vh) rotate(360deg);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(styleSheet);
-        }
-
         setTimeout(() => {
             confettiContainer.remove();
         }, 2800);
     }
 
-    // Personalização das imagens: instrução amigável no console e também um hover de dica
+    // Dica no console
     console.log('%c💖 Dica: Substitua os links das fotos pelos seus momentos! 💖', 'color: #ff4d6d; font-size: 14px; font-weight: bold;');
     console.log('As fotos estão no carrossel. Basta editar os src das imagens dentro de .carousel-slide img.');
-    
-    // Caso queira trocar as mensagens para o nome dela, pode editar o texto no HTML, ou via JS simples:
-    // Exemplo: Se quiser alterar o nome do assinante dinamicamente via URL? Não necessário. Mas está tudo pronto.
-    // Bônus: efeito de coração pulsante na página inteira ao abrir.
-    // Tudo responsivo e romântico.
 </script>
 
-<!-- NOTA IMPORTANTE PARA VOCÊ SUBSTITUIR AS IMAGENS:
-     DENTRO DO HTML, localize as 4 tags <img> dentro da div com class="carousel-slider".
-     Troque os links "https://picsum.photos/id/..." pelos links reais das suas fotos.
-     Você pode hospedar as fotos no próprio GitHub, ou usar links do Imgur, Google Drive (link direto), etc.
-     Para melhor resultado: mantenha proporção quadrada ou use object-fit: cover (já está).
-     Depois de editar, salve e faça o deploy no GitHub Pages.
--->
 </body>
 </html>
