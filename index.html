@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Para meu amor ❤️ - Dia dos Namorados</title>
+    <title>Para Geovanna ❤️</title>
+    <link rel="icon" href="img/geovanna.jpg">
+<meta name="theme-color" content="#ff4d6d">
     <style>
         * {
             margin: 0;
@@ -302,6 +304,50 @@
             padding-bottom: 16px;
             color: #d47b8a;
         }
+
+     
+/* todo o seu CSS atual */
+
+/* Cole aqui embaixo */
+
+.card{
+    animation: aparecer 1s ease;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.carousel-slide img{
+    aspect-ratio: 4/5;
+    object-fit: cover;
+}
+
+@media (max-width:480px){
+    h2{
+        font-size:1.4rem;
+    }
+
+    .special-message{
+        font-size:0.95rem;
+        padding:15px;
+        border-radius:30px;
+    }
+
+    .btn-surpresa{
+        width:100%;
+        justify-content:center;
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -334,10 +380,18 @@
         <div class="heart-icon">❤️‍🔥</div>
         <h2>Feliz Dia dos Namorados!</h2>
         <div class="special-message">
-            <p>✨ ✨ Cada foto ao lado representa um momento especial e uma pequena lembrança dessa fase em que estamos nos conhecendo. ✨ ✨</p>
-            <p>Você torna meus dias mais leves e as nossas conversas sempre deixam um sorriso no meu rosto. Obrigado por cada mensagem, cada momento compartilhado e pela oportunidade de estar te conhecendo melhor. 😊</p>
-            <p>😊 Estou feliz por ter te conhecido e espero que nossas conversas continuem por muito tempo.
-:::🌹</p>
+    <p>✨ Algumas pessoas aparecem de forma inesperada e conseguem deixar os dias mais leves. ✨</p>
+
+    <p>Mesmo que ainda estejamos nos conhecendo, eu quis criar algo especial para registrar o quanto gosto das nossas conversas e dos momentos compartilhados.</p>
+
+    <p>Seu jeito, sua simpatia e sua alegria fazem diferença, e cada mensagem sua sempre traz um sorriso para o meu rosto. 😊</p>
+
+    <p>Que a vida continue nos proporcionando bons momentos, muitas risadas e lembranças bonitas para guardar.</p>
+
+    <p>🌹 Esta pequena homenagem foi feita com carinho especialmente para você. 🌹</p>
+
+    <div class="name-sign">— Com carinho, Fábio ❤️</div>
+</div>
             <div class="name-sign">— Com carinho, Fábio 😊💌</div>
         </div>
         <button class="btn-surpresa" id="surpresaBtn">🎁 Surpresa Especial 🎁</button>
@@ -348,12 +402,20 @@
 <!-- Modal surpresa -->
 <div id="surpresaModal" class="modal">
     <div class="modal-content">
-        <h3>💖 SURPRESA! 💖</h3>
-        <p>Nossas conversas têm tornado meus dias mais interessantes e especiais</p>
-        <p>Espero que possamos continuar nos conhecendo melhor e compartilhando muitos momentos legais pela frente." 😊🌻</p>
-        <div style="font-size: 2rem;">🥰💕🐻</div>
-        <button class="close-modal" id="closeModalBtn">Fechar com carinho</button>
-    </div>
+    <h3>💖 Para Você 💖</h3>
+
+    <p>Nem sempre as melhores conexões começam de forma planejada.</p>
+
+    <p>Às vezes elas surgem em uma conversa simples e vão tornando os dias mais especiais aos poucos.</p>
+
+    <p>Obrigado por fazer parte dos meus dias e por cada conversa compartilhada. 😊🌻</p>
+
+    <div style="font-size: 2rem;">🥰🌹✨</div>
+
+    <button class="close-modal" id="closeModalBtn">
+        Fechar ❤️
+    </button>
+</div>
 </div>
 
 <script>
