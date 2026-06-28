@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Para Geovanna ❤️</title>
-    <link rel="icon" href="img/logo.jpeg">
-    <meta name="theme-color" content="#ff4d6d">
     <style>
         * {
             margin: 0;
@@ -15,546 +13,337 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 55%, #fad0c4 100%);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Segoe UI', 'Quicksand', system-ui, -apple-system, 'Poppins', cursive;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #fbc2eb 100%);
+            background-size: 400% 400%;
+            animation: gradiente 8s ease infinite;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 20px;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Container principal do cartão */
+        @keyframes gradiente {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Corações flutuantes */
+        .heart-float {
+            position: absolute;
+            font-size: 2rem;
+            color: #ff4d6d;
+            animation: subir 6s linear infinite;
+            pointer-events: none;
+            opacity: 0.6;
+            user-select: none;
+        }
+
+        @keyframes subir {
+            0% {
+                transform: translateY(100vh) scale(0.5) rotate(0deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Cartão principal */
         .card {
-            max-width: 500px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 30px;
+            padding: 30px 25px 40px;
+            max-width: 480px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 48px;
-            box-shadow: 0 30px 40px rgba(0, 0, 0, 0.2), 0 0 0 12px rgba(255, 215, 200, 0.6);
-            overflow: hidden;
-            backdrop-filter: blur(2px);
-            transition: transform 0.3s ease;
-            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s;
         }
 
         .card:hover {
-            transform: scale(1.01);
+            transform: scale(1.02);
         }
 
-        /* Área do carrossel de fotos */
-        .carousel-container {
+        .card h1 {
+            font-size: 2.8rem;
+            color: #c9184a;
+            margin-bottom: 5px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(201, 24, 74, 0.2);
+        }
+
+        .card .subtitle {
+            font-size: 1rem;
+            color: #a4133c;
+            margin-bottom: 20px;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        /* Slideshow */
+        .slideshow-container {
             position: relative;
             width: 100%;
-            background: #ffe6e3;
-            overflow: hidden;
-            border-bottom: 5px solid #ffb7b2;
-        }
-
-        .carousel-slider {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #fff0ed;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            display: block;
-            transition: all 0.3s;
-        }
-
-        /* Navegação do carrossel */
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 105, 130, 0.7);
-            backdrop-filter: blur(6px);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 10;
-        }
-
-        .carousel-btn:hover {
-            background: #ff4d6d;
-            transform: translateY(-50%) scale(1.08);
-        }
-
-        .btn-prev {
-            left: 16px;
-        }
-
-        .btn-next {
-            right: 16px;
-        }
-
-        .dots {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            padding: 14px 0 12px;
-            background: #fff0ed;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            background: #ffb3b0;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .dot.active {
-            background: #ff4d6d;
-            width: 26px;
+            aspect-ratio: 4 / 3;
             border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px;
+            background: #ffe3e8;
         }
 
-        /* Conteúdo da mensagem e coração */
-        .message-area {
-            padding: 28px 28px 20px;
-            text-align: center;
-            background: white;
+        .slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
         }
 
-        .heart-icon {
-            font-size: 48px;
-            animation: pulse 1.5s infinite;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
-
-        h2 {
-            font-size: 1.9rem;
-            color: #c72a4f;
-            margin-bottom: 12px;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-        }
-
-        .special-message {
-            font-size: 1.15rem;
-            line-height: 1.5;
-            color: #4a2e2e;
-            background: #fff7f5;
-            padding: 18px 16px;
-            border-radius: 48px;
-            margin: 20px 0 16px;
-            box-shadow: inset 0 1px 4px #ffdad2, 0 4px 12px rgba(0,0,0,0.02);
-            font-weight: 500;
-        }
-
-        .special-message p {
-            margin-bottom: 12px;
-        }
-
-        .name-sign {
-            font-size: 1rem;
-            font-style: italic;
-            color: #c75c6e;
-            margin-top: 12px;
-        }
-
-        .btn-surpresa {
-            background: linear-gradient(95deg, #ff768a, #ff4d6d);
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            padding: 12px 26px;
-            border-radius: 60px;
-            cursor: pointer;
-            transition: 0.25s;
-            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
-            margin: 12px 0 8px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-surpresa:hover {
-            background: linear-gradient(95deg, #ff5e78, #e63952);
-            transform: scale(0.97);
-            box-shadow: 0 4px 12px rgba(255, 77, 109, 0.5);
-        }
-
-        /* modal surpresa */
-        .modal {
-            display: none;
-            position: fixed;
+        .slide {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            border-radius: 20px;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Indicadores (bolinhas) */
+        .indicators {
+            display: flex;
             justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            animation: fadeIn 0.3s;
+            gap: 10px;
+            margin-top: -10px;
+            margin-bottom: 20px;
         }
 
-        .modal-content {
-            background: white;
-            max-width: 320px;
-            width: 85%;
-            text-align: center;
-            padding: 28px 20px 32px;
-            border-radius: 64px;
-            box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3);
-            position: relative;
-            animation: scaleUp 0.3s ease;
-        }
-
-        .modal-content h3 {
-            font-size: 2rem;
-            color: #e63952;
-            margin-bottom: 16px;
-        }
-
-        .modal-content p {
-            font-size: 1.2rem;
-            margin: 16px 0;
-            color: #3b2a2a;
-        }
-
-        .close-modal {
-            background: #ff8c9e;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 40px;
-            font-weight: bold;
-            font-size: 1rem;
-            margin-top: 16px;
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #d9d9d9;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background 0.3s, transform 0.3s;
             cursor: pointer;
-            color: white;
+            border: none;
         }
 
-        footer {
-            font-size: 0.7rem;
-            text-align: center;
-            background: white;
-            padding: 0px 0 20px 0;
-            color: #d47b8a;
+        .dot.active {
+            background: #c9184a;
+            transform: scale(1.3);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Mensagem */
+        .message-box {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 18px;
+            padding: 18px 20px;
+            min-height: 80px;
+            border: 1px solid rgba(201, 24, 74, 0.2);
+            margin-bottom: 5px;
+        }
+
+        #mensagem {
+            font-size: 1.2rem;
+            color: #2d2d2d;
+            line-height: 1.6;
+            font-weight: 500;
+            min-height: 60px;
+        }
+
+        #mensagem .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2rem;
+            background: #c9184a;
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: piscar 0.8s step-end infinite;
+        }
+
+        @keyframes piscar {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .assinatura {
+            margin-top: 18px;
+            font-size: 1.1rem;
+            color: #a4133c;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .assinatura span {
+            display: inline-block;
+            animation: pulse 1.5s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); text-shadow: 0 0 0 rgba(255,77,109,0.5);}
-            70% { transform: scale(1.12); text-shadow: 0 0 8px #ff99aa;}
-            100% { transform: scale(1);}
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes scaleUp {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            80% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* responsivo */
-        @media (max-width: 550px) {
+        /* Responsivo */
+        @media (max-width: 500px) {
             .card {
-                border-radius: 36px;
+                padding: 20px 15px 30px;
             }
-            .message-area {
-                padding: 20px;
+            .card h1 {
+                font-size: 2.2rem;
             }
-            h2 {
-                font-size: 1.6rem;
-            }
-            .special-message {
+            #mensagem {
                 font-size: 1rem;
             }
-            .carousel-btn {
-                width: 32px;
-                height: 32px;
-                font-size: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h2 {
-                font-size: 1.4rem;
-            }
-            .special-message {
-                font-size: 0.95rem;
-                padding: 15px;
-                border-radius: 30px;
-            }
-            .btn-surpresa {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        .carousel-slide img {
-            aspect-ratio: 4/5;
-            object-fit: cover;
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <!-- Carrossel com 4 fotos -->
-    <div class="carousel-container">
-        <div class="carousel-slider" id="carouselSlider">
-            <!-- ⚠️ ATENÇÃO: Substitua os links das imagens pelas suas fotos! ⚠️ -->
-            <div class="carousel-slide">
-                <img src="img/imagem1.jpg" alt="Momento especial 1">
-            </div>
-            <div class="carousel-slide">
-                <img src="img/imagem.jpeg" alt="Momento especial 2">
-            </div>
-            <div class="carousel-slide">
-                <img src="img/imagem2.jpg" alt="Momento especial 3">
-            </div>
-            <div class="carousel-slide">
-                <img src="img/imagem4.jpeg" alt="Momento especial 4">
-            </div>
-            <div class="carousel-slide">
-                <img src="img/WhatsApp Image 2026-06-03 at 12.01.09.jpeg" alt="Momento especial 4">
+    <!-- Corações flutuantes (gerados por JS) -->
+
+    <div class="card">
+        <h1>💗 Geovanna 💗</h1>
+        <div class="subtitle">✨ Cada dia ao seu lado é especial ✨</div>
+
+        <!-- Slideshow das 3 fotos -->
+        <div class="slideshow-container">
+            <div class="slides">
+                <!--
+                    ⬇️ SUBSTITUA os caminhos abaixo pelas suas 3 fotos da Geovanna
+                    Exemplo: "fotos/geovanna1.jpg", "fotos/geovanna2.jpg", "fotos/geovanna3.jpg"
+                -->
+                <img src="img/imagem.jpeg" alt="Geovanna 1" class="slide active" />
+                <img src="https://via.placeholder.com/600x450/ffb3c6/ffffff?text=Foto+2+❤️" alt="Geovanna 2" class="slide" />
+                <img src="https://via.placeholder.com/600x450/ffb3c6/ffffff?text=Foto+3+❤️" alt="Geovanna 3" class="slide" />
             </div>
         </div>
-        <button class="carousel-btn btn-prev" id="prevBtn">‹</button>
-        <button class="carousel-btn btn-next" id="nextBtn">›</button>
-        <div class="dots" id="dotsContainer"></div>
-    </div>
 
-    <div class="message-area">
-        <div class="heart-icon">❤️‍🔥</div>
-        <h2>Feliz Dia dos Namorados!</h2>
-        <div class="special-message">
-            <p>✨ Algumas pessoas aparecem de forma inesperada e conseguem deixar os dias mais leves. ✨</p>
-            <p>Mesmo que ainda estejamos nos conhecendo, eu quis criar algo especial para registrar o quanto gosto das nossas conversas e dos momentos compartilhados.</p>
-            <p>Seu jeito, sua simpatia e sua alegria fazem diferença, e cada mensagem sua sempre traz um sorriso para o meu rosto. 😊</p>
-            <p>Que a vida continue nos proporcionando bons momentos, muitas risadas e lembranças bonitas para guardar.</p>
-            <p>🌹 Esta pequena homenagem foi feita com carinho especialmente para você. 🌹</p>
+        <!-- Indicadores -->
+        <div class="indicators">
+            <button class="dot active" data-index="0" aria-label="Foto 1"></button>
+            <button class="dot" data-index="1" aria-label="Foto 2"></button>
+            <button class="dot" data-index="2" aria-label="Foto 3"></button>
         </div>
-        <div class="name-sign">— Com carinho, Fábio 😊💌</div>
-        
-        <button class="btn-surpresa" id="surpresaBtn">🎁 Surpresa Especial 🎁</button>
+
+        <!-- Mensagem -->
+        <div class="message-box">
+            <div id="mensagem">
+                <span class="cursor"></span>
+            </div>
+        </div>
+
+        <div class="assinatura">
+            <span>💖 Com todo meu amor, [Seu nome] 💖</span>
+        </div>
     </div>
-    
-    <footer>feito com todo amor para você ❤️</footer>
-</div>
 
-<!-- Modal surpresa -->
-<div id="surpresaModal" class="modal">
-    <div class="modal-content">
-        <h3>💖 Para Você 💖</h3>
-        <p>Nem sempre as melhores conexões começam de forma planejada.</p>
-        <p>Às vezes elas surgem em uma conversa simples e vão tornando os dias mais especiais aos poucos.</p>
-        <p>Obrigado por fazer parte dos meus dias e por cada conversa compartilhada. 😊🌻</p>
-        <div style="font-size: 2rem;">🥰🌹✨</div>
-        <button class="close-modal" id="closeModalBtn">Fechar ❤️</button>
-    </div>
-</div>
-
-<script>
-    // -------- CONFIGURAÇÃO DO CARROSSEL DE 4 FOTOS ----------
-    const slider = document.getElementById('carouselSlider');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const prevButton = document.getElementById('prevBtn');
-    const nextButton = document.getElementById('nextBtn');
-    const dotsContainer = document.getElementById('dotsContainer');
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-
-    // Criar pontos indicadores
-    function createDots() {
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (i === currentIndex) dot.classList.add('active');
-            dot.addEventListener('click', () => {
-                goToSlide(i);
-            });
-            dotsContainer.appendChild(dot);
-        }
-    }
-
-    function updateDots() {
+    <script>
+        // ========== 1. Slideshow automático ==========
+        const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, idx) => {
-            if (idx === currentIndex) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
+        let currentIndex = 0;
+        let interval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        function startSlideshow() {
+            if (interval) clearInterval(interval);
+            interval = setInterval(nextSlide, 3500);
+        }
+
+        // Clique nas bolinhas
+        dots.forEach((dot) => {
+            dot.addEventListener('click', function() {
+                const index = parseInt(this.dataset.index);
+                if (index !== currentIndex) {
+                    currentIndex = index;
+                    showSlide(currentIndex);
+                    startSlideshow(); // reinicia o temporizador
+                }
+            });
         });
-    }
 
-    function goToSlide(index) {
-        if (index < 0) index = 0;
-        if (index >= totalSlides) index = totalSlides - 1;
-        currentIndex = index;
-        const offset = -currentIndex * 100;
-        slider.style.transform = `translateX(${offset}%)`;
-        updateDots();
-    }
+        // Inicia o slideshow
+        startSlideshow();
 
-    function nextSlide() {
-        if (currentIndex + 1 < totalSlides) {
-            goToSlide(currentIndex + 1);
-        } else {
-            goToSlide(0);
-        }
-    }
+        // ========== 2. Efeito de digitação na mensagem ==========
+        const mensagemEl = document.getElementById('mensagem');
+        const textoCompleto = "Geovanna, você é a pessoa mais incrível que já conheci. Seu sorriso ilumina meus dias e seu amor transforma minha vida. Te amo mais do que palavras podem dizer! 💕";
 
-    function prevSlide() {
-        if (currentIndex - 1 >= 0) {
-            goToSlide(currentIndex - 1);
-        } else {
-            goToSlide(totalSlides - 1);
-        }
-    }
+        let charIndex = 0;
+        let isDeleting = false; // só para efeito, mas aqui vamos só digitar
 
-    // Eventos dos botões
-    nextButton.addEventListener('click', nextSlide);
-    prevButton.addEventListener('click', prevSlide);
-
-    // Inicializar dots e primeira posição
-    createDots();
-    goToSlide(0);
-
-    // Suporte a toque no mobile
-    let touchStartX = 0;
-    slider.parentElement.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-    slider.parentElement.addEventListener('touchend', (e) => {
-        const touchEndX = e.changedTouches[0].screenX;
-        const diff = touchEndX - touchStartX;
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                prevSlide();
+        function typeMessage() {
+            if (charIndex < textoCompleto.length) {
+                // Remove o cursor temporariamente, adiciona caractere, recoloca o cursor
+                const cursorSpan = mensagemEl.querySelector('.cursor');
+                const textoSemCursor = mensagemEl.textContent.replace('|', ''); // limpa
+                mensagemEl.innerHTML = textoCompleto.substring(0, charIndex + 1) + '<span class="cursor"></span>';
+                charIndex++;
+                setTimeout(typeMessage, 50); // velocidade da digitação
             } else {
-                nextSlide();
+                // Mensagem completa, cursor pisca normalmente
+                // Não faz nada, o cursor já está lá
             }
         }
-    });
 
-    // ----------- MENSAGEM SURPRESA MODAL -------------
-    const modal = document.getElementById('surpresaModal');
-    const surpresaBtn = document.getElementById('surpresaBtn');
-    const closeModalBtn = document.getElementById('closeModalBtn');
+        // Inicia a digitação após um pequeno atraso
+        setTimeout(typeMessage, 800);
 
-    function openModal() {
-        modal.style.display = 'flex';
-        createConfetti();
-    }
+        // ========== 3. Corações flutuantes (gerados dinamicamente) ==========
+        function criarCoracao() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (1.2 + Math.random() * 2) + 'rem';
+            heart.style.animationDuration = (5 + Math.random() * 4) + 's';
+            heart.style.animationDelay = (Math.random() * 3) + 's';
+            document.body.appendChild(heart);
 
-    function closeModal() {
-        modal.style.display = 'none';
-    }
-
-    surpresaBtn.addEventListener('click', openModal);
-    closeModalBtn.addEventListener('click', closeModal);
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-
-    // Confetes surpresa
-    function createConfetti() {
-        const confettiContainer = document.createElement('div');
-        confettiContainer.style.position = 'fixed';
-        confettiContainer.style.top = '0';
-        confettiContainer.style.left = '0';
-        confettiContainer.style.width = '100%';
-        confettiContainer.style.height = '100%';
-        confettiContainer.style.pointerEvents = 'none';
-        confettiContainer.style.zIndex = '1001';
-        document.body.appendChild(confettiContainer);
-
-        const colors = ['#ff4d6d', '#ffb3b0', '#ff8c9e', '#ffd966', '#ffb347', '#ff6b9d'];
-        for (let i = 0; i < 120; i++) {
-            const conf = document.createElement('div');
-            const size = Math.random() * 8 + 4;
-            conf.style.position = 'absolute';
-            conf.style.width = size + 'px';
-            conf.style.height = size + 'px';
-            conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            conf.style.left = Math.random() * 100 + '%';
-            conf.style.top = '-20px';
-            conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-            conf.style.opacity = Math.random() * 0.8 + 0.5;
-            conf.style.animation = `fall ${Math.random() * 2 + 2}s linear forwards`;
-            conf.style.transform = `rotate(${Math.random() * 360}deg)`;
-            confettiContainer.appendChild(conf);
+            // Remove após a animação para não acumular
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
         }
 
-        setTimeout(() => {
-            confettiContainer.remove();
-        }, 2800);
-    }
+        // Cria corações a cada 500ms
+        setInterval(criarCoracao, 500);
 
-    // Dica no console
-    console.log('%c💖 Dica: Substitua os links das fotos pelos seus momentos! 💖', 'color: #ff4d6d; font-size: 14px; font-weight: bold;');
-    console.log('As fotos estão no carrossel. Basta editar os src das imagens dentro de .carousel-slide img.');
-</script>
-
+        // Cria alguns imediatamente
+        for (let i = 0; i < 6; i++) {
+            setTimeout(criarCoracao, i * 200);
+        }
+    </script>
 </body>
 </html>
