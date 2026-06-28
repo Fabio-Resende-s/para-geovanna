@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>Para Geovanna ❤️</title>
     <style>
         * {
@@ -20,7 +20,7 @@
             background-size: 400% 400%;
             animation: gradiente 8s ease infinite;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px;
+            padding: 16px;
             overflow: hidden;
             position: relative;
         }
@@ -55,13 +55,13 @@
 
         /* Cartão principal */
         .card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(4px);
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(6px);
             border-radius: 30px;
-            padding: 30px 25px 40px;
+            padding: 24px 20px 32px;
             max-width: 480px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             text-align: center;
             position: relative;
             z-index: 10;
@@ -69,23 +69,19 @@
             transition: transform 0.3s;
         }
 
-        .card:hover {
-            transform: scale(1.02);
-        }
-
         .card h1 {
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             color: #c9184a;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: 700;
             letter-spacing: 2px;
             text-shadow: 0 2px 10px rgba(201, 24, 74, 0.2);
         }
 
         .card .subtitle {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #a4133c;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             opacity: 0.8;
             font-style: italic;
         }
@@ -97,16 +93,9 @@
             aspect-ratio: 4 / 3;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            margin-bottom: 20px;
             background: #ffe3e8;
-        }
-
-        .slides {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            position: relative;
         }
 
         .slide {
@@ -130,8 +119,8 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: -10px;
-            margin-bottom: 20px;
+            margin-top: -6px;
+            margin-bottom: 18px;
         }
 
         .dot {
@@ -139,10 +128,10 @@
             height: 12px;
             background: #d9d9d9;
             border-radius: 50%;
-            display: inline-block;
             transition: background 0.3s, transform 0.3s;
             cursor: pointer;
             border: none;
+            padding: 0;
         }
 
         .dot.active {
@@ -150,22 +139,27 @@
             transform: scale(1.3);
         }
 
-        /* Mensagem */
+        /* Mensagem - corrigido para quebras e rolagem */
         .message-box {
             background: rgba(255, 255, 255, 0.5);
             border-radius: 18px;
             padding: 18px 20px;
-            min-height: 80px;
-            border: 1px solid rgba(201, 24, 74, 0.2);
-            margin-bottom: 5px;
+            border: 1px solid rgba(201, 24, 74, 0.15);
+            margin-bottom: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+            text-align: left;
         }
 
         #mensagem {
-            font-size: 1.2rem;
-            color: #2d2d2d;
-            line-height: 1.6;
+            font-size: 1.1rem;
+            color: #1e1e1e;
+            line-height: 1.7;
             font-weight: 500;
-            min-height: 60px;
+            white-space: pre-wrap;    /* preserva quebras de linha */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            min-height: 50px;
         }
 
         #mensagem .cursor {
@@ -184,8 +178,8 @@
         }
 
         .assinatura {
-            margin-top: 18px;
-            font-size: 1.1rem;
+            margin-top: 16px;
+            font-size: 1.05rem;
             color: #a4133c;
             font-weight: 600;
             letter-spacing: 1px;
@@ -198,19 +192,43 @@
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.08); }
         }
 
         /* Responsivo */
         @media (max-width: 500px) {
             .card {
-                padding: 20px 15px 30px;
+                padding: 18px 14px 24px;
             }
             .card h1 {
                 font-size: 2.2rem;
             }
+            .card .subtitle {
+                font-size: 0.85rem;
+            }
             #mensagem {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .message-box {
+                padding: 14px 16px;
+                max-height: 250px;
+            }
+            .assinatura {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .card h1 {
+                font-size: 1.8rem;
+            }
+            #mensagem {
+                font-size: 0.85rem;
+            }
+            .message-box {
+                max-height: 200px;
+                padding: 12px 14px;
             }
         }
     </style>
@@ -221,18 +239,15 @@
 
     <div class="card">
         <h1>💗 Geovanna 💗</h1>
-        <div class="subtitle">✨ Cada dia ao seu lado é especial ✨</div>
+        <div class="subtitle">✨ Cada dia as mensagens ficar mais interessantes ✨</div>
 
         <!-- Slideshow das 3 fotos -->
         <div class="slideshow-container">
             <div class="slides">
-                <!--
-                    ⬇️ SUBSTITUA os caminhos abaixo pelas suas 3 fotos da Geovanna
-                    Exemplo: "fotos/geovanna1.jpg", "fotos/geovanna2.jpg", "fotos/geovanna3.jpg"
-                -->
-                <img src="img/imagem.jpeg" alt="Geovanna 1" class="slide active" />
-                <img src="https://via.placeholder.com/600x450/ffb3c6/ffffff?text=Foto+2+❤️" alt="Geovanna 2" class="slide" />
-                <img src="https://via.placeholder.com/600x450/ffb3c6/ffffff?text=Foto+3+❤️" alt="Geovanna 3" class="slide" />
+                <!-- Substitua pelos caminhos das suas fotos -->
+                <img src="./img/imagem1.jpg" alt="Geovanna 1" class="slide active" />
+                <img src="./img/imagem 12.jpeg" alt="Geovanna 2" class="slide" />
+                <img src="./img/imagem14.jpeg" alt="Geovanna 3" class="slide" />
             </div>
         </div>
 
@@ -251,7 +266,7 @@
         </div>
 
         <div class="assinatura">
-            <span>💖 Com todo meu amor, [Seu nome] 💖</span>
+            <span>💖 Com todo meu carinho, Fábio Resende 💖</span>
         </div>
     </div>
 
@@ -281,46 +296,68 @@
             interval = setInterval(nextSlide, 3500);
         }
 
-        // Clique nas bolinhas
         dots.forEach((dot) => {
             dot.addEventListener('click', function() {
                 const index = parseInt(this.dataset.index);
                 if (index !== currentIndex) {
                     currentIndex = index;
                     showSlide(currentIndex);
-                    startSlideshow(); // reinicia o temporizador
+                    startSlideshow();
                 }
             });
         });
 
-        // Inicia o slideshow
         startSlideshow();
 
-        // ========== 2. Efeito de digitação na mensagem ==========
+        // ========== 2. Efeito de digitação com suporte a quebras de linha ==========
         const mensagemEl = document.getElementById('mensagem');
-        const textoCompleto = "Geovanna, você é a pessoa mais incrível que já conheci. Seu sorriso ilumina meus dias e seu amor transforma minha vida. Te amo mais do que palavras podem dizer! 💕";
+
+        const textoCompleto = `Não sei qual foi a primeira mensagem que te mandei, mas sei que ela mudou muita coisa na minha vida. ❤️
+
+        Desde aquele dia, cada conversa, cada risada e cada momento com você foi se tornando especial.
+
+        Em pouco mais de um mês, você conquistou um lugar enorme no meu coração. Nunca imaginei que uma simples conversa no Facebook me levaria a conhecer uma pessoa tão maravilhosa.
+
+        Você é carinhosa, linda, especial e faz meus dias muito mais felizes. Obrigado por estar ao meu lado e por fazer parte da minha vida.
+
+        Espero que essa seja apenas a primeira página de uma história linda que ainda vamos escrever juntos.
+
+        Te amo, Geovanna! ❤️🥹`;
 
         let charIndex = 0;
-        let isDeleting = false; // só para efeito, mas aqui vamos só digitar
+        let typingTimeout = null;
 
         function typeMessage() {
             if (charIndex < textoCompleto.length) {
-                // Remove o cursor temporariamente, adiciona caractere, recoloca o cursor
-                const cursorSpan = mensagemEl.querySelector('.cursor');
-                const textoSemCursor = mensagemEl.textContent.replace('|', ''); // limpa
-                mensagemEl.innerHTML = textoCompleto.substring(0, charIndex + 1) + '<span class="cursor"></span>';
+                const currentChar = textoCompleto[charIndex];
+                let htmlContent = '';
+
+                // Pega o texto já digitado (sem o cursor)
+                const currentText = textoCompleto.substring(0, charIndex + 1);
+                // Substitui quebras de linha por <br>
+                const textWithBreaks = currentText.replace(/\n/g, '<br>');
+                htmlContent = textWithBreaks + '<span class="cursor"></span>';
+
+                mensagemEl.innerHTML = htmlContent;
                 charIndex++;
-                setTimeout(typeMessage, 50); // velocidade da digitação
+
+                // Rola para o final automaticamente se o texto ultrapassar a altura
+                const messageBox = mensagemEl.closest('.message-box');
+                if (messageBox) {
+                    messageBox.scrollTop = messageBox.scrollHeight;
+                }
+
+                typingTimeout = setTimeout(typeMessage, 40); // velocidade ajustada
             } else {
-                // Mensagem completa, cursor pisca normalmente
-                // Não faz nada, o cursor já está lá
+                // Mensagem completa – mantém o cursor piscando
+                mensagemEl.innerHTML = textoCompleto.replace(/\n/g, '<br>') + '<span class="cursor"></span>';
             }
         }
 
-        // Inicia a digitação após um pequeno atraso
-        setTimeout(typeMessage, 800);
+        // Inicia após um breve atraso
+        setTimeout(typeMessage, 600);
 
-        // ========== 3. Corações flutuantes (gerados dinamicamente) ==========
+        // ========== 3. Corações flutuantes ==========
         function criarCoracao() {
             const heart = document.createElement('div');
             heart.classList.add('heart-float');
@@ -331,16 +368,12 @@
             heart.style.animationDelay = (Math.random() * 3) + 's';
             document.body.appendChild(heart);
 
-            // Remove após a animação para não acumular
             setTimeout(() => {
                 heart.remove();
             }, 10000);
         }
 
-        // Cria corações a cada 500ms
         setInterval(criarCoracao, 500);
-
-        // Cria alguns imediatamente
         for (let i = 0; i < 6; i++) {
             setTimeout(criarCoracao, i * 200);
         }
