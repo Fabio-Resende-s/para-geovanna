@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>Para Geovanna ❤️</title>
+    <title>Para Geovanna ❤️ + Jogo da Gata (Auto-Scroll)</title>
     <style>
+        /* ========== ESTILOS GERAIS ========== */
         * {
             margin: 0;
             padding: 0;
@@ -14,15 +15,15 @@
         body {
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #fbc2eb 100%);
             background-size: 400% 400%;
             animation: gradiente 8s ease infinite;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 16px;
-            overflow: hidden;
             position: relative;
+            overflow-x: hidden;
         }
 
         @keyframes gradiente {
@@ -31,42 +32,36 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Corações flutuantes */
         .heart-float {
-            position: absolute;
+            position: fixed;
             font-size: 2rem;
             color: #ff4d6d;
             animation: subir 6s linear infinite;
             pointer-events: none;
             opacity: 0.6;
             user-select: none;
+            z-index: 999;
         }
 
         @keyframes subir {
-            0% {
-                transform: translateY(100vh) scale(0.5) rotate(0deg);
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-10vh) scale(1.2) rotate(720deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0.7; }
+            100% { transform: translateY(-10vh) scale(1.2) rotate(720deg); opacity: 0; }
         }
 
-        /* Cartão principal */
+        /* ========== CARTÃO DA DECLARAÇÃO ========== */
         .card {
             background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(6px);
             border-radius: 30px;
             padding: 24px 20px 32px;
-            max-width: 480px;
+            max-width: 600px;
             width: 100%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             text-align: center;
             position: relative;
             z-index: 10;
             border: 2px solid rgba(255, 255, 255, 0.5);
-            transition: transform 0.3s;
+            margin-bottom: 30px;
         }
 
         .card h1 {
@@ -86,7 +81,6 @@
             font-style: italic;
         }
 
-        /* Slideshow */
         .slideshow-container {
             position: relative;
             width: 100%;
@@ -110,11 +104,8 @@
             border-radius: 20px;
         }
 
-        .slide.active {
-            opacity: 1;
-        }
+        .slide.active { opacity: 1; }
 
-        /* Indicadores (bolinhas) */
         .indicators {
             display: flex;
             justify-content: center;
@@ -139,7 +130,6 @@
             transform: scale(1.3);
         }
 
-        /* Mensagem - corrigido para quebras e rolagem */
         .message-box {
             background: rgba(255, 255, 255, 0.5);
             border-radius: 18px;
@@ -156,7 +146,7 @@
             color: #1e1e1e;
             line-height: 1.7;
             font-weight: 500;
-            white-space: pre-wrap;    /* preserva quebras de linha */
+            white-space: pre-wrap;
             word-wrap: break-word;
             overflow-wrap: break-word;
             min-height: 50px;
@@ -195,74 +185,181 @@
             50% { transform: scale(1.08); }
         }
 
-        /* Responsivo */
-        @media (max-width: 500px) {
-            .card {
-                padding: 18px 14px 24px;
-            }
-            .card h1 {
-                font-size: 2.2rem;
-            }
-            .card .subtitle {
-                font-size: 0.85rem;
-            }
-            #mensagem {
-                font-size: 0.95rem;
-                line-height: 1.6;
-            }
-            .message-box {
-                padding: 14px 16px;
-                max-height: 250px;
-            }
-            .assinatura {
-                font-size: 0.95rem;
-            }
+        /* ========== JOGO DA GATA (com auto-scroll) ========== */
+        .game-wrapper {
+            width: 100%;
+            max-width: 820px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        canvas {
+            background: #87CEEB;
+            border-radius: 12px;
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 800 / 400;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .info-panel {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding: 10px 20px;
+            background: #0f3460;
+            border-radius: 12px;
+            color: #fff;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .score {
+            font-size: 22px;
+            font-weight: bold;
+            background: #e94560;
+            padding: 6px 18px;
+            border-radius: 30px;
+            box-shadow: 0 4px 0 #a0293f;
+        }
+
+        .cat-message {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #1a1a40;
+            padding: 8px 18px 8px 12px;
+            border-radius: 40px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #e94560;
+            transition: all 0.3s ease;
+        }
+
+        .cat-message img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+            background: #2d2d5e;
+        }
+
+        .cat-message .text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #f5f5f5;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            flex: 1;
+        }
+
+        .cat-message .text span {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .controls kbd {
+            background: #2d2d5e;
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: bold;
+            border: 1px solid #555;
+        }
+
+        .btn-restart {
+            background: #e94560;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 0 #a0293f;
+        }
+
+        .btn-restart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #a0293f;
+        }
+
+        .btn-restart:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #a0293f;
+        }
+
+        /* ========== RESPONSIVO ========== */
+        @media (max-width: 600px) {
+            .card { padding: 18px 14px 24px; }
+            .card h1 { font-size: 2.2rem; }
+            .card .subtitle { font-size: 0.85rem; }
+            #mensagem { font-size: 0.95rem; line-height: 1.6; }
+            .message-box { padding: 14px 16px; max-height: 250px; }
+            .assinatura { font-size: 0.95rem; }
+            .info-panel { flex-direction: column; align-items: stretch; }
+            .cat-message { min-width: unset; }
         }
 
         @media (max-width: 380px) {
-            .card h1 {
-                font-size: 1.8rem;
-            }
-            #mensagem {
-                font-size: 0.85rem;
-            }
-            .message-box {
-                max-height: 200px;
-                padding: 12px 14px;
-            }
+            .card h1 { font-size: 1.8rem; }
+            #mensagem { font-size: 0.85rem; }
+            .message-box { max-height: 200px; padding: 12px 14px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Corações flutuantes (gerados por JS) -->
-
+    <!-- ============================================================ -->
+    <!--  SEÇÃO DA DECLARAÇÃO                                          -->
+    <!-- ============================================================ -->
     <div class="card">
         <h1>💗 Geovanna 💗</h1>
-        <div class="subtitle">✨ Cada dia as mensagens ficar mais interessantes ✨</div>
+        <div class="subtitle">✨ Cada dia as mensagens ficam mais interessantes ✨</div>
 
-        <!-- Slideshow das 3 fotos -->
         <div class="slideshow-container">
             <div class="slides">
-                <!-- Substitua pelos caminhos das suas fotos -->
+                <!-- ★★★ SUBSTITUA PELOS CAMINHOS DAS SUAS FOTOS ★★★ -->
                 <img src="./img/imagem1.jpg" alt="Geovanna 1" class="slide active" />
                 <img src="./img/imagem 12.jpeg" alt="Geovanna 2" class="slide" />
                 <img src="./img/imagem14.jpeg" alt="Geovanna 3" class="slide" />
             </div>
         </div>
 
-        <!-- Indicadores -->
         <div class="indicators">
             <button class="dot active" data-index="0" aria-label="Foto 1"></button>
             <button class="dot" data-index="1" aria-label="Foto 2"></button>
             <button class="dot" data-index="2" aria-label="Foto 3"></button>
         </div>
 
-        <!-- Mensagem -->
         <div class="message-box">
-            <div id="mensagem">
-                <span class="cursor"></span>
-            </div>
+            <div id="mensagem"><span class="cursor"></span></div>
         </div>
 
         <div class="assinatura">
@@ -270,8 +367,38 @@
         </div>
     </div>
 
+    <!-- ============================================================ -->
+    <!--  JOGO DA GATA (AUTO-SCROLL)                                   -->
+    <!-- ============================================================ -->
+    <div class="game-wrapper">
+        <div class="game-container">
+            <canvas id="gameCanvas" width="800" height="400"></canvas>
+
+            <div class="info-panel">
+                <div class="score">⭐ <span id="scoreDisplay">0</span></div>
+
+                <div class="cat-message" id="catMessage">
+                    <img id="catImage" src="./img/imagem1.jpg" alt="Gata" />
+                    <div class="text" id="catText">
+                        Colete moedas!
+                        <span>cada uma revela uma surpresa</span>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <kbd>←</kbd> <kbd>→</kbd> mover &nbsp; <kbd>Espaço</kbd> pular
+                </div>
+
+                <button class="btn-restart" id="restartBtn">🔁 Reiniciar</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // ========== 1. Slideshow automático ==========
+        // ================================================================
+        // 1. SLIDESHOW + DIGITAÇÃO + CORAÇÕES (declaração)
+        // ================================================================
+
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
         let currentIndex = 0;
@@ -309,9 +436,8 @@
 
         startSlideshow();
 
-        // ========== 2. Efeito de digitação com suporte a quebras de linha ==========
+        // --- Digitação ---
         const mensagemEl = document.getElementById('mensagem');
-
         const textoCompleto = `Não sei qual foi a primeira mensagem que te mandei, mas sei que ela mudou muita coisa na minha vida. ❤️
 
         Desde aquele dia, cada conversa, cada risada e cada momento com você foi se tornando especial.
@@ -329,35 +455,21 @@
 
         function typeMessage() {
             if (charIndex < textoCompleto.length) {
-                const currentChar = textoCompleto[charIndex];
-                let htmlContent = '';
-
-                // Pega o texto já digitado (sem o cursor)
                 const currentText = textoCompleto.substring(0, charIndex + 1);
-                // Substitui quebras de linha por <br>
                 const textWithBreaks = currentText.replace(/\n/g, '<br>');
-                htmlContent = textWithBreaks + '<span class="cursor"></span>';
-
-                mensagemEl.innerHTML = htmlContent;
+                mensagemEl.innerHTML = textWithBreaks + '<span class="cursor"></span>';
                 charIndex++;
-
-                // Rola para o final automaticamente se o texto ultrapassar a altura
                 const messageBox = mensagemEl.closest('.message-box');
-                if (messageBox) {
-                    messageBox.scrollTop = messageBox.scrollHeight;
-                }
-
-                typingTimeout = setTimeout(typeMessage, 40); // velocidade ajustada
+                if (messageBox) messageBox.scrollTop = messageBox.scrollHeight;
+                typingTimeout = setTimeout(typeMessage, 40);
             } else {
-                // Mensagem completa – mantém o cursor piscando
                 mensagemEl.innerHTML = textoCompleto.replace(/\n/g, '<br>') + '<span class="cursor"></span>';
             }
         }
 
-        // Inicia após um breve atraso
         setTimeout(typeMessage, 600);
 
-        // ========== 3. Corações flutuantes ==========
+        // --- Corações flutuantes ---
         function criarCoracao() {
             const heart = document.createElement('div');
             heart.classList.add('heart-float');
@@ -367,16 +479,450 @@
             heart.style.animationDuration = (5 + Math.random() * 4) + 's';
             heart.style.animationDelay = (Math.random() * 3) + 's';
             document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 10000);
+            setTimeout(() => heart.remove(), 10000);
         }
 
         setInterval(criarCoracao, 500);
-        for (let i = 0; i < 6; i++) {
-            setTimeout(criarCoracao, i * 200);
+        for (let i = 0; i < 6; i++) setTimeout(criarCoracao, i * 200);
+
+        // ================================================================
+        // 2. JOGO DA GATA com AUTO-SCROLL (parede que avança)
+        // ================================================================
+
+        // ★★★ FRASES E FOTOS ★★★
+        const frases = [
+            'Você é a pessoa mais especial da minha vida ❤️',
+            'Cada dia ao seu lado é um presente 🎁',
+            'Seu sorriso ilumina meu mundo ✨',
+            'Te amo mais que gato ama soneca 😺',
+            'Você é minha gata favorita 🐱',
+            'Obrigado por existir na minha vida 🌟',
+            'Seu cheiro é meu lugar favorito 🌸',
+            'Você é perfeita do jeitinho que é 💖',
+            'Meu coração bate mais forte por você 💓',
+            'Sua risada é a música mais linda 🎵',
+            'Você é a razão do meu sorriso 😊',
+            'Te amo hoje, amanhã e sempre 💕',
+            'Você é a melhor coisa que me aconteceu 🌈',
+            'Seu abraço é meu porto seguro 🤗',
+            'Gata, você é minha paixão! 🔥'
+        ];
+
+        const fotosDaGata = [
+            './img/imagem1.jpg',
+            './img/imagem 12.jpeg',
+            './img/imagem14.jpeg'
+        ];
+
+        function getRandomCatImage() {
+            if (fotosDaGata.length > 0) {
+                return fotosDaGata[Math.floor(Math.random() * fotosDaGata.length)];
+            } else {
+                return `https://cataas.com/cat?t=${Date.now() + Math.random()}`;
+            }
         }
+
+        // --- Configurações do jogo ---
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreSpan = document.getElementById('scoreDisplay');
+        const catImage = document.getElementById('catImage');
+        const catText = document.getElementById('catText');
+
+        const GRAVITY = 0.5;
+        const FRICTION = 0.8;
+        const SCROLL_SPEED = 2.5; // velocidade do auto-scroll (parede)
+
+        const player = {
+            x: 50,
+            y: 300,
+            w: 28,
+            h: 36,
+            vx: 0,
+            vy: 0,
+            onGround: false,
+            jumping: false
+        };
+
+        const groundY = 360;
+        const groundHeight = 40;
+        let coins = [];
+        let platforms = [];
+
+        const keys = { left: false, right: false, up: false };
+
+        let score = 0;
+        let gameOver = false;
+        let win = false;
+
+        // Variável que controla o limite esquerdo (parede que avança)
+        let leftWallX = 0;
+        const WORLD_WIDTH = 2400;
+
+        function initGame() {
+            player.x = 50;
+            player.y = groundY - player.h;
+            player.vx = 0;
+            player.vy = 0;
+            player.onGround = false;
+
+            score = 0;
+            gameOver = false;
+            win = false;
+            leftWallX = 0; // começa em 0
+            updateScore();
+
+            platforms = [
+                { x: 0, y: groundY, w: WORLD_WIDTH, h: groundHeight },
+                { x: 200, y: 280, w: 120, h: 20 },
+                { x: 450, y: 220, w: 120, h: 20 },
+                { x: 700, y: 280, w: 120, h: 20 },
+                { x: 950, y: 200, w: 120, h: 20 },
+                { x: 1200, y: 280, w: 120, h: 20 },
+                { x: 1450, y: 200, w: 120, h: 20 },
+                { x: 1700, y: 280, w: 120, h: 20 },
+                { x: 1950, y: 220, w: 120, h: 20 },
+            ];
+
+            coins = [];
+            for (let i = 1; i < 20; i++) {
+                const x = i * 110 + 30;
+                if (x < WORLD_WIDTH - 40) {
+                    coins.push({ x, y: groundY - 30, r: 12, collected: false });
+                }
+            }
+            platforms.forEach(p => {
+                if (p.y < groundY) {
+                    const count = Math.floor(p.w / 50);
+                    for (let i = 0; i < count; i++) {
+                        const x = p.x + 20 + i * 45;
+                        const y = p.y - 18;
+                        coins.push({ x, y, r: 12, collected: false });
+                    }
+                }
+            });
+
+            showCatMessage('Corra! A tela vai te empurrar! 🏃‍♀️', getRandomCatImage());
+        }
+
+        function updateScore() {
+            scoreSpan.textContent = score;
+        }
+
+        function showCatMessage(text, imageUrl) {
+            catText.innerHTML = `${text} <span>❤️ da sua gata</span>`;
+            if (imageUrl) catImage.src = imageUrl;
+            const panel = document.getElementById('catMessage');
+            panel.style.transform = 'scale(1.05)';
+            setTimeout(() => panel.style.transform = 'scale(1)', 150);
+        }
+
+        function getRandomPhrase() {
+            return frases[Math.floor(Math.random() * frases.length)];
+        }
+
+        function rectCollide(ax, ay, aw, ah, bx, by, bw, bh) {
+            return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by;
+        }
+
+        function circleRectCollide(cx, cy, cr, rx, ry, rw, rh) {
+            const nearX = Math.max(rx, Math.min(cx, rx + rw));
+            const nearY = Math.max(ry, Math.min(cy, ry + rh));
+            const dx = cx - nearX;
+            const dy = cy - nearY;
+            return (dx * dx + dy * dy) < (cr * cr);
+        }
+
+        function applyPhysics() {
+            if (gameOver) return;
+
+            // --- Auto-scroll: a parede esquerda avança ---
+            leftWallX += SCROLL_SPEED;
+
+            // Se o jogador estiver à esquerda da parede, ele morre
+            if (player.x < leftWallX) {
+                gameOver = true;
+                showCatMessage('💔 A tela te pegou! Tente de novo!', getRandomCatImage());
+                return;
+            }
+
+            // Gravidade
+            player.vy += GRAVITY;
+
+            // Movimento horizontal (setas)
+            if (keys.left) player.vx = -4;
+            else if (keys.right) player.vx = 4;
+            else player.vx *= FRICTION;
+
+            if (Math.abs(player.vx) > 0.1) player.vx = Math.sign(player.vx) * Math.min(Math.abs(player.vx), 6);
+            else player.vx = 0;
+
+            // Pulo
+            if (keys.up && player.onGround) {
+                player.vy = -10;
+                player.onGround = false;
+                player.jumping = true;
+            }
+
+            // Movimento X
+            player.x += player.vx;
+            // Impedir de ultrapassar a parede esquerda
+            if (player.x < leftWallX) player.x = leftWallX;
+            if (player.x + player.w > WORLD_WIDTH) player.x = WORLD_WIDTH - player.w;
+
+            // Colisão com plataformas (X)
+            for (let p of platforms) {
+                if (rectCollide(player.x, player.y, player.w, player.h, p.x, p.y, p.w, p.h)) {
+                    if (player.vx > 0) { player.x = p.x - player.w; }
+                    else if (player.vx < 0) { player.x = p.x + p.w; }
+                    player.vx = 0;
+                }
+            }
+
+            // Movimento Y
+            player.y += player.vy;
+
+            // Colisão com plataformas (Y)
+            player.onGround = false;
+            for (let p of platforms) {
+                if (rectCollide(player.x, player.y, player.w, player.h, p.x, p.y, p.w, p.h)) {
+                    if (player.vy > 0) {
+                        player.y = p.y - player.h;
+                        player.vy = 0;
+                        player.onGround = true;
+                        player.jumping = false;
+                    } else if (player.vy < 0) {
+                        player.y = p.y + p.h;
+                        player.vy = 0;
+                    }
+                }
+            }
+
+            // Cair no vazio
+            if (player.y > canvas.height + 50) {
+                gameOver = true;
+                showCatMessage('💔 Caiu no vazio... Reinicie!', getRandomCatImage());
+                return;
+            }
+
+            // Vitória: chegar ao fim do mundo
+            if (player.x + player.w >= WORLD_WIDTH - 10) {
+                win = true;
+                gameOver = true;
+                showCatMessage('🏆 Você venceu! Te amo muito! 💕', getRandomCatImage());
+                return;
+            }
+
+            // Coletar moedas
+            for (let coin of coins) {
+                if (coin.collected) continue;
+                if (circleRectCollide(coin.x, coin.y, coin.r, player.x, player.y, player.w, player.h)) {
+                    coin.collected = true;
+                    score++;
+                    updateScore();
+                    const phrase = getRandomPhrase();
+                    const imgUrl = getRandomCatImage();
+                    showCatMessage(phrase, imgUrl);
+                }
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Câmera segue o jogador, mas respeita a parede esquerda
+            let targetCam = player.x - canvas.width * 0.3;
+            targetCam = Math.max(leftWallX - 50, Math.min(targetCam, WORLD_WIDTH - canvas.width));
+            // Suavização
+            const cameraX = targetCam; // sem lerp para ficar mais responsivo
+
+            ctx.save();
+            ctx.translate(-cameraX, 0);
+
+            // Céu
+            const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            grad.addColorStop(0, '#4facfe');
+            grad.addColorStop(1, '#87CEEB');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, WORLD_WIDTH, canvas.height);
+
+            // Nuvens
+            ctx.fillStyle = 'rgba(255,255,255,0.6)';
+            for (let i = 0; i < 8; i++) {
+                const x = (i * 350 + 20) % WORLD_WIDTH;
+                const y = 30 + (i * 47) % 80;
+                ctx.beginPath();
+                ctx.arc(x, y, 30, 0, Math.PI * 2);
+                ctx.arc(x + 40, y - 15, 35, 0, Math.PI * 2);
+                ctx.arc(x + 80, y, 30, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Desenhar a parede que avança (uma faixa vermelha no lado esquerdo)
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.3)';
+            ctx.fillRect(leftWallX - 20, 0, 20, canvas.height);
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.7)';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('⚡', leftWallX + 10, canvas.height / 2);
+
+            // Plataformas
+            for (let p of platforms) {
+                if (p.y === groundY) {
+                    ctx.fillStyle = '#7ec850';
+                    ctx.fillRect(p.x, p.y, p.w, p.h);
+                    ctx.fillStyle = '#5fa83a';
+                    ctx.fillRect(p.x, p.y, p.w, 6);
+                    for (let i = 0; i < p.w; i += 20) {
+                        ctx.fillStyle = '#6bb843';
+                        ctx.fillRect(p.x + i, p.y + 4, 8, 4);
+                    }
+                } else {
+                    ctx.fillStyle = '#b57a4a';
+                    ctx.fillRect(p.x, p.y, p.w, p.h);
+                    ctx.fillStyle = '#9b6540';
+                    ctx.fillRect(p.x, p.y, p.w, 4);
+                    ctx.fillStyle = '#8a5a3a';
+                    ctx.fillRect(p.x, p.y + p.h - 3, p.w, 3);
+                }
+            }
+
+            // Moedas
+            for (let coin of coins) {
+                if (coin.collected) continue;
+                const cx = coin.x;
+                const cy = coin.y;
+                ctx.shadowColor = '#ffd700';
+                ctx.shadowBlur = 12;
+                ctx.beginPath();
+                ctx.arc(cx, cy, coin.r, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffd700';
+                ctx.fill();
+                ctx.shadowBlur = 0;
+                ctx.strokeStyle = '#e6b800';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fillStyle = '#cc9900';
+                ctx.font = 'bold 12px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('$', cx, cy + 1);
+            }
+
+            // Player (Mario)
+            const px = player.x;
+            const py = player.y;
+            ctx.fillStyle = '#e53e3e';
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.shadowBlur = 8;
+            ctx.fillRect(px + 2, py + 8, 24, 24);
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#c0392b';
+            ctx.fillRect(px, py, 28, 10);
+            ctx.fillRect(px - 2, py + 2, 32, 6);
+            ctx.fillStyle = '#f5cba7';
+            ctx.fillRect(px + 6, py + 10, 16, 12);
+            ctx.fillStyle = '#2c3e50';
+            ctx.fillRect(px + 10, py + 12, 4, 6);
+            ctx.fillRect(px + 18, py + 12, 4, 6);
+            ctx.fillStyle = '#7f4f24';
+            ctx.fillRect(px + 8, py + 20, 16, 4);
+            ctx.fillStyle = '#f1c40f';
+            ctx.beginPath();
+            ctx.arc(px + 10, py + 28, 3, 0, Math.PI * 2);
+            ctx.arc(px + 20, py + 28, 3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#2c3e50';
+            const legOffset = player.vx > 0.5 ? Math.sin(Date.now() / 100) * 2 : 0;
+            ctx.fillRect(px + 4, py + 32, 6, 6 + legOffset);
+            ctx.fillRect(px + 18, py + 32, 6, 6 - legOffset);
+            ctx.fillStyle = '#8b4513';
+            ctx.fillRect(px + 2, py + 38 + legOffset, 10, 4);
+            ctx.fillRect(px + 16, py + 38 - legOffset, 10, 4);
+
+            // Game Over / Win
+            if (gameOver) {
+                ctx.fillStyle = 'rgba(0,0,0,0.4)';
+                ctx.fillRect(0, 0, WORLD_WIDTH, canvas.height);
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 48px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.shadowColor = 'black';
+                ctx.shadowBlur = 16;
+                const msg = win ? '🌟 VITÓRIA! Te amo! 💖' : '💀 GAME OVER';
+                ctx.fillText(msg, WORLD_WIDTH / 2, canvas.height / 2 - 20);
+                ctx.font = '24px Arial';
+                ctx.fillText('Clique em "Reiniciar" para jogar novamente', WORLD_WIDTH / 2, canvas.height / 2 + 50);
+                ctx.shadowBlur = 0;
+            }
+
+            ctx.restore();
+
+            // Barra de progresso (mostra a distância percorrida)
+            const progress = Math.min(1, player.x / WORLD_WIDTH);
+            ctx.fillStyle = 'rgba(0,0,0,0.4)';
+            ctx.fillRect(10, 10, 160, 12);
+            ctx.fillStyle = '#e94560';
+            ctx.fillRect(12, 12, 156 * progress, 8);
+            ctx.fillStyle = '#fff';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`${Math.round(progress * 100)}%`, 90, 16);
+        }
+
+        function gameLoop() {
+            if (!gameOver) {
+                applyPhysics();
+            }
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // --- Controles ---
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') keys.left = true;
+            if (e.key === 'ArrowRight') keys.right = true;
+            if (e.key === ' ' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                keys.up = true;
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowLeft') keys.left = false;
+            if (e.key === 'ArrowRight') keys.right = false;
+            if (e.key === ' ' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                keys.up = false;
+            }
+        });
+
+        document.getElementById('restartBtn').addEventListener('click', () => {
+            initGame();
+            keys.left = false;
+            keys.right = false;
+            keys.up = false;
+        });
+
+        canvas.addEventListener('click', () => {
+            if (!gameOver) {
+                keys.up = true;
+                setTimeout(() => keys.up = false, 100);
+            }
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Iniciar
+        initGame();
+        gameLoop();
     </script>
 </body>
 </html>
