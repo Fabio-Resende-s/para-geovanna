@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>Para Geovanna ❤️ + Jogo da Gata (Auto-Scroll)</title>
+    <title>Para Geovanna ❤️ + Jogo da Gata</title>
     <style>
         /* ========== ESTILOS GERAIS ========== */
         * {
@@ -27,9 +27,15 @@
         }
 
         @keyframes gradiente {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .heart-float {
@@ -44,8 +50,14 @@
         }
 
         @keyframes subir {
-            0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0.7; }
-            100% { transform: translateY(-10vh) scale(1.2) rotate(720deg); opacity: 0; }
+            0% {
+                transform: translateY(100vh) scale(0.5) rotate(0deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2) rotate(720deg);
+                opacity: 0;
+            }
         }
 
         /* ========== CARTÃO DA DECLARAÇÃO ========== */
@@ -104,7 +116,9 @@
             border-radius: 20px;
         }
 
-        .slide.active { opacity: 1; }
+        .slide.active {
+            opacity: 1;
+        }
 
         .indicators {
             display: flex;
@@ -163,8 +177,13 @@
         }
 
         @keyframes piscar {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
         }
 
         .assinatura {
@@ -181,11 +200,16 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
         }
 
-        /* ========== JOGO DA GATA (com auto-scroll) ========== */
+        /* ========== JOGO DA GATA ========== */
         .game-wrapper {
             width: 100%;
             max-width: 820px;
@@ -281,6 +305,7 @@
             gap: 12px;
             color: #aaa;
             font-size: 14px;
+            flex-wrap: wrap;
         }
 
         .controls kbd {
@@ -315,22 +340,71 @@
             box-shadow: 0 2px 0 #a0293f;
         }
 
+        .play-btn {
+            background: linear-gradient(45deg, #ff4d6d, #ff758f);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            font-size: 22px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 25px auto;
+            display: block;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            animation: pulse 1.5s infinite;
+            transition: transform 0.2s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+        }
+
         /* ========== RESPONSIVO ========== */
         @media (max-width: 600px) {
-            .card { padding: 18px 14px 24px; }
-            .card h1 { font-size: 2.2rem; }
-            .card .subtitle { font-size: 0.85rem; }
-            #mensagem { font-size: 0.95rem; line-height: 1.6; }
-            .message-box { padding: 14px 16px; max-height: 250px; }
-            .assinatura { font-size: 0.95rem; }
-            .info-panel { flex-direction: column; align-items: stretch; }
-            .cat-message { min-width: unset; }
+            .card {
+                padding: 18px 14px 24px;
+            }
+            .card h1 {
+                font-size: 2.2rem;
+            }
+            .card .subtitle {
+                font-size: 0.85rem;
+            }
+            #mensagem {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .message-box {
+                padding: 14px 16px;
+                max-height: 250px;
+            }
+            .assinatura {
+                font-size: 0.95rem;
+            }
+            .info-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .cat-message {
+                min-width: unset;
+            }
+            .controls {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 380px) {
-            .card h1 { font-size: 1.8rem; }
-            #mensagem { font-size: 0.85rem; }
-            .message-box { max-height: 200px; padding: 12px 14px; }
+            .card h1 {
+                font-size: 1.8rem;
+            }
+            #mensagem {
+                font-size: 0.85rem;
+            }
+            .message-box {
+                max-height: 200px;
+                padding: 12px 14px;
+            }
         }
     </style>
 </head>
@@ -344,12 +418,10 @@
         <div class="subtitle">✨ Cada dia as mensagens ficam mais interessantes ✨</div>
 
         <div class="slideshow-container">
-            <div class="slides">
-                <!-- ★★★ SUBSTITUA PELOS CAMINHOS DAS SUAS FOTOS ★★★ -->
-                <img src="./img/imagem1.jpg" alt="Geovanna 1" class="slide active" />
-                <img src="./img/imagem 12.jpeg" alt="Geovanna 2" class="slide" />
-                <img src="./img/imagem14.jpeg" alt="Geovanna 3" class="slide" />
-            </div>
+            <!-- ★★★ SUBSTITUA PELOS CAMINHOS DAS SUAS FOTOS ★★★ -->
+            <img src="./img/imagem1.jpg" alt="Geovanna 1" class="slide active" />
+            <img src="./img/imagem12.jpeg" alt="Geovanna 2" class="slide" />
+            <img src="./img/imagem14.jpeg" alt="Geovanna 3" class="slide" />
         </div>
 
         <div class="indicators">
@@ -367,10 +439,14 @@
         </div>
     </div>
 
+    <button id="abrirJogo" class="play-btn">
+        🎮 Clique aqui para jogar uma surpresa
+    </button>
+
     <!-- ============================================================ -->
-    <!--  JOGO DA GATA (AUTO-SCROLL)                                   -->
+    <!--  JOGO DA GATA (com tartarugas e bandeira)                     -->
     <!-- ============================================================ -->
-    <div class="game-wrapper">
+    <div class="game-wrapper" id="gameWrapper" style="display:none;">
         <div class="game-container">
             <canvas id="gameCanvas" width="800" height="400"></canvas>
 
@@ -380,8 +456,8 @@
                 <div class="cat-message" id="catMessage">
                     <img id="catImage" src="./img/imagem1.jpg" alt="Gata" />
                     <div class="text" id="catText">
-                        Colete moedas!
-                        <span>cada uma revela uma surpresa</span>
+                        Colete moedas e derrote as tartarugas!
+                        <span>cada moeda revela uma surpresa</span>
                     </div>
                 </div>
 
@@ -438,17 +514,27 @@
 
         // --- Digitação ---
         const mensagemEl = document.getElementById('mensagem');
-        const textoCompleto = `Não sei qual foi a primeira mensagem que te mandei, mas sei que ela mudou muita coisa na minha vida. ❤️
+        const textoCompleto = `Oi, Geovanna. ❤️
 
-        Desde aquele dia, cada conversa, cada risada e cada momento com você foi se tornando especial.
+    Talvez você nem imagine o quanto se tornou importante para mim.
 
-        Em pouco mais de um mês, você conquistou um lugar enorme no meu coração. Nunca imaginei que uma simples conversa no Facebook me levaria a conhecer uma pessoa tão maravilhosa.
+    Em tão pouco tempo, você conseguiu ocupar um espaço enorme no meu coração.
 
-        Você é carinhosa, linda, especial e faz meus dias muito mais felizes. Obrigado por estar ao meu lado e por fazer parte da minha vida.
+    Cada conversa, cada risada, cada momento ao seu lado faz eu perceber o quanto você é especial.
 
-        Espero que essa seja apenas a primeira página de uma história linda que ainda vamos escrever juntos.
+    O seu sorriso transmite paz, o seu jeito transmite carinho e a sua presença deixa qualquer dia melhor.
 
-        Te amo, Geovanna! ❤️🥹`;
+    Obrigado por existir, por me permitir fazer parte da sua vida e por ser exatamente essa pessoa incrível que você é.
+
+    Espero que esse seja apenas o começo de muitos momentos felizes juntos.
+
+    Nunca deixe de sorrir, porque o seu sorriso é uma das coisas mais lindas que já vi.
+
+    Você merece ser feliz todos os dias.
+
+    E enquanto eu puder, quero ser um dos motivos do seu sorriso.
+
+    Te amo, Geovanna. ❤️🥹`;
 
         let charIndex = 0;
         let typingTimeout = null;
@@ -486,31 +572,36 @@
         for (let i = 0; i < 6; i++) setTimeout(criarCoracao, i * 200);
 
         // ================================================================
-        // 2. JOGO DA GATA com AUTO-SCROLL (parede que avança)
+        // 2. JOGO DA GATA (com tartarugas e bandeira)
         // ================================================================
 
         // ★★★ FRASES E FOTOS ★★★
         const frases = [
-            'Você é a pessoa mais especial da minha vida ❤️',
-            'Cada dia ao seu lado é um presente 🎁',
-            'Seu sorriso ilumina meu mundo ✨',
-            'Te amo mais que gato ama soneca 😺',
-            'Você é minha gata favorita 🐱',
-            'Obrigado por existir na minha vida 🌟',
-            'Seu cheiro é meu lugar favorito 🌸',
-            'Você é perfeita do jeitinho que é 💖',
-            'Meu coração bate mais forte por você 💓',
-            'Sua risada é a música mais linda 🎵',
-            'Você é a razão do meu sorriso 😊',
-            'Te amo hoje, amanhã e sempre 💕',
-            'Você é a melhor coisa que me aconteceu 🌈',
-            'Seu abraço é meu porto seguro 🤗',
-            'Gata, você é minha paixão! 🔥'
+            "❤️ Desde o primeiro dia que falei com você, algo mudou dentro de mim.",
+            "🌹 Seu sorriso consegue iluminar até os meus dias mais difíceis.",
+            "✨ Você é o motivo de muitos dos meus melhores pensamentos.",
+            "🥹 Obrigado por existir e tornar minha vida mais feliz.",
+            "💖 Cada conversa com você faz eu gostar ainda mais da pessoa incrível que você é.",
+            "🌍 Se eu pudesse escolher alguém para compartilhar meus dias, escolheria você mil vezes.",
+            "🤍 Você entrou na minha vida de um jeito simples, mas conquistou um espaço enorme no meu coração.",
+            "💕 Você é linda por fora, mas o seu coração é ainda mais bonito.",
+            "🌸 O seu jeito carinhoso faz toda a diferença na minha vida.",
+            "💓 Meu coração sempre fica feliz quando aparece uma mensagem sua.",
+            "😍 Você é aquela pessoa que faz qualquer momento ficar especial.",
+            "☀️ Espero poder arrancar muitos sorrisos seus ainda.",
+            "💫 Cada dia ao seu lado vale mais do que mil presentes.",
+            "❤️ Você merece todo carinho, respeito e amor do mundo.",
+            "🌺 Seu abraço é o lugar onde eu queria estar agora.",
+            "🥰 Você faz meu coração acelerar sem nem perceber.",
+            "💝 Obrigado por fazer parte da minha vida.",
+            "🌹 Espero que essa história esteja apenas começando.",
+            "💍 Meu maior desejo é construir um futuro cheio de momentos felizes ao seu lado.",
+            "❤️ Eu te amo mais do que qualquer texto consegue explicar."
         ];
 
         const fotosDaGata = [
             './img/imagem1.jpg',
-            './img/imagem 12.jpeg',
+            './img/imagem12.jpeg',
             './img/imagem14.jpeg'
         ];
 
@@ -531,7 +622,6 @@
 
         const GRAVITY = 0.5;
         const FRICTION = 0.8;
-        const SCROLL_SPEED = 2.5; // velocidade do auto-scroll (parede)
 
         const player = {
             x: 50,
@@ -548,6 +638,7 @@
         const groundHeight = 40;
         let coins = [];
         let platforms = [];
+        let enemies = [];
 
         const keys = { left: false, right: false, up: false };
 
@@ -555,9 +646,14 @@
         let gameOver = false;
         let win = false;
 
-        // Variável que controla o limite esquerdo (parede que avança)
-        let leftWallX = 0;
         const WORLD_WIDTH = 2400;
+
+        // Câmera
+        let cameraX = 0;
+
+        // Bandeira
+        let flagRaised = false;
+        let flagRaiseProgress = 0;
 
         function initGame() {
             player.x = 50;
@@ -569,7 +665,9 @@
             score = 0;
             gameOver = false;
             win = false;
-            leftWallX = 0; // começa em 0
+            cameraX = 0;
+            flagRaised = false;
+            flagRaiseProgress = 0;
             updateScore();
 
             platforms = [
@@ -602,7 +700,21 @@
                 }
             });
 
-            showCatMessage('Corra! A tela vai te empurrar! 🏃‍♀️', getRandomCatImage());
+            // --- Inimigos (tartarugas) ---
+            enemies = [
+                // Tartaruga no chão
+                { x: 350, y: groundY - 28, w: 30, h: 28, vx: 1.5, alive: true, direction: 1 },
+                { x: 600, y: groundY - 28, w: 30, h: 28, vx: 1.8, alive: true, direction: -1 },
+                { x: 900, y: groundY - 28, w: 30, h: 28, vx: 1.2, alive: true, direction: 1 },
+                // Tartaruga em plataforma elevada
+                { x: 480, y: 280 - 28, w: 30, h: 28, vx: 1.0, alive: true, direction: 1 },
+                { x: 730, y: 280 - 28, w: 30, h: 28, vx: 1.4, alive: true, direction: -1 },
+                { x: 1220, y: 280 - 28, w: 30, h: 28, vx: 1.6, alive: true, direction: 1 },
+                { x: 1720, y: 280 - 28, w: 30, h: 28, vx: 1.3, alive: true, direction: -1 },
+                { x: 1980, y: 220 - 28, w: 30, h: 28, vx: 1.7, alive: true, direction: 1 },
+            ];
+
+            showCatMessage('Cuidado com as tartarugas! Pule sobre elas! 🐢', getRandomCatImage());
         }
 
         function updateScore() {
@@ -636,20 +748,10 @@
         function applyPhysics() {
             if (gameOver) return;
 
-            // --- Auto-scroll: a parede esquerda avança ---
-            leftWallX += SCROLL_SPEED;
-
-            // Se o jogador estiver à esquerda da parede, ele morre
-            if (player.x < leftWallX) {
-                gameOver = true;
-                showCatMessage('💔 A tela te pegou! Tente de novo!', getRandomCatImage());
-                return;
-            }
-
             // Gravidade
             player.vy += GRAVITY;
 
-            // Movimento horizontal (setas)
+            // Movimento horizontal
             if (keys.left) player.vx = -4;
             else if (keys.right) player.vx = 4;
             else player.vx *= FRICTION;
@@ -666,15 +768,13 @@
 
             // Movimento X
             player.x += player.vx;
-            // Impedir de ultrapassar a parede esquerda
-            if (player.x < leftWallX) player.x = leftWallX;
+            if (player.x < 0) player.x = 0;
             if (player.x + player.w > WORLD_WIDTH) player.x = WORLD_WIDTH - player.w;
 
             // Colisão com plataformas (X)
             for (let p of platforms) {
                 if (rectCollide(player.x, player.y, player.w, player.h, p.x, p.y, p.w, p.h)) {
-                    if (player.vx > 0) { player.x = p.x - player.w; }
-                    else if (player.vx < 0) { player.x = p.x + p.w; }
+                    if (player.vx > 0) { player.x = p.x - player.w; } else if (player.vx < 0) { player.x = p.x + p.w; }
                     player.vx = 0;
                 }
             }
@@ -705,12 +805,47 @@
                 return;
             }
 
-            // Vitória: chegar ao fim do mundo
-            if (player.x + player.w >= WORLD_WIDTH - 10) {
-                win = true;
-                gameOver = true;
-                showCatMessage('🏆 Você venceu! Te amo muito! 💕', getRandomCatImage());
-                return;
+            // --- Colisão com inimigos ---
+            for (let enemy of enemies) {
+                if (!enemy.alive) continue;
+
+                // Movimento do inimigo (vai e volta)
+                enemy.x += enemy.vx * enemy.direction;
+                // Verifica se bateu na borda da plataforma onde está
+                let onPlatform = false;
+                for (let p of platforms) {
+                    if (enemy.y + enemy.h >= p.y && enemy.y + enemy.h <= p.y + p.h + 2 &&
+                        enemy.x + enemy.w > p.x + 2 && enemy.x < p.x + p.w - 2) {
+                        onPlatform = true;
+                        // Se chegar na borda, inverte
+                        if (enemy.x <= p.x + 2 || enemy.x + enemy.w >= p.x + p.w - 2) {
+                            enemy.direction *= -1;
+                        }
+                        break;
+                    }
+                }
+                // Se não estiver em nenhuma plataforma, inverte (caiu? mas não tratamos)
+                if (!onPlatform) {
+                    // Inverte direção para não sumir
+                    enemy.direction *= -1;
+                }
+
+                // Colisão com o jogador
+                if (rectCollide(player.x, player.y, player.w, player.h,
+                        enemy.x, enemy.y, enemy.w, enemy.h)) {
+                    // Verifica se o jogador está caindo e o topo do inimigo está abaixo do meio do jogador
+                    if (player.vy > 0 && player.y + player.h - enemy.y < 30) {
+                        // Esmagou a tartaruga
+                        enemy.alive = false;
+                        player.vy = -6; // quica
+                        showCatMessage('💥 Esmagou a tartaruga! Continue!', getRandomCatImage());
+                    } else {
+                        // Morreu
+                        gameOver = true;
+                        showCatMessage('💀 Uma tartaruga te pegou!', getRandomCatImage());
+                        return;
+                    }
+                }
             }
 
             // Coletar moedas
@@ -725,16 +860,24 @@
                     showCatMessage(phrase, imgUrl);
                 }
             }
+
+            // --- Verificar se chegou na bandeira (final) ---
+            if (player.x + player.w >= WORLD_WIDTH - 50) {
+                win = true;
+                gameOver = true;
+                flagRaised = true;
+                showCatMessage('🏆 Você venceu! Bandeira levantada! Te amo! 💕', getRandomCatImage());
+                return;
+            }
+
+            // Atualizar câmera
+            let targetCam = player.x - canvas.width * 0.3;
+            targetCam = Math.max(0, Math.min(targetCam, WORLD_WIDTH - canvas.width));
+            cameraX += (targetCam - cameraX) * 0.1;
         }
 
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Câmera segue o jogador, mas respeita a parede esquerda
-            let targetCam = player.x - canvas.width * 0.3;
-            targetCam = Math.max(leftWallX - 50, Math.min(targetCam, WORLD_WIDTH - canvas.width));
-            // Suavização
-            const cameraX = targetCam; // sem lerp para ficar mais responsivo
 
             ctx.save();
             ctx.translate(-cameraX, 0);
@@ -757,15 +900,6 @@
                 ctx.arc(x + 80, y, 30, 0, Math.PI * 2);
                 ctx.fill();
             }
-
-            // Desenhar a parede que avança (uma faixa vermelha no lado esquerdo)
-            ctx.fillStyle = 'rgba(255, 0, 0, 0.3)';
-            ctx.fillRect(leftWallX - 20, 0, 20, canvas.height);
-            ctx.fillStyle = 'rgba(255, 0, 0, 0.7)';
-            ctx.font = 'bold 16px Arial';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('⚡', leftWallX + 10, canvas.height / 2);
 
             // Plataformas
             for (let p of platforms) {
@@ -810,6 +944,65 @@
                 ctx.fillText('$', cx, cy + 1);
             }
 
+            // --- Inimigos (tartarugas) ---
+            for (let enemy of enemies) {
+                if (!enemy.alive) continue;
+                const ex = enemy.x;
+                const ey = enemy.y;
+                // Corpo (casco)
+                ctx.fillStyle = '#2e7d32';
+                ctx.beginPath();
+                ctx.ellipse(ex + 15, ey + 14, 15, 12, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#1b5e20';
+                ctx.beginPath();
+                ctx.ellipse(ex + 15, ey + 12, 12, 8, 0, 0, Math.PI * 2);
+                ctx.fill();
+                // Cabeça
+                ctx.fillStyle = '#4caf50';
+                ctx.beginPath();
+                ctx.arc(ex + (enemy.direction > 0 ? 28 : 2), ey + 10, 8, 0, Math.PI * 2);
+                ctx.fill();
+                // Olhos
+                ctx.fillStyle = '#fff';
+                ctx.beginPath();
+                ctx.arc(ex + (enemy.direction > 0 ? 30 : 4), ey + 8, 3, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#000';
+                ctx.beginPath();
+                ctx.arc(ex + (enemy.direction > 0 ? 32 : 6), ey + 8, 1.5, 0, Math.PI * 2);
+                ctx.fill();
+                // Patas
+                ctx.fillStyle = '#388e3c';
+                ctx.fillRect(ex + 4, ey + 22, 6, 6);
+                ctx.fillRect(ex + 20, ey + 22, 6, 6);
+            }
+
+            // --- Bandeira no final ---
+            const flagX = WORLD_WIDTH - 50;
+            const flagY = groundY - 100;
+            // Poste
+            ctx.fillStyle = '#8d6e63';
+            ctx.fillRect(flagX, flagY, 6, 100);
+            // Bandeira (sobe quando win)
+            let flagHeight = 40;
+            if (flagRaised) {
+                flagRaiseProgress = Math.min(1, flagRaiseProgress + 0.02);
+                flagHeight = 40 * (1 - flagRaiseProgress);
+            }
+            ctx.fillStyle = '#e53935';
+            ctx.beginPath();
+            ctx.moveTo(flagX + 6, flagY + flagHeight);
+            ctx.lineTo(flagX + 60, flagY + 20 + flagHeight / 2);
+            ctx.lineTo(flagX + 6, flagY + 40 + flagHeight);
+            ctx.fill();
+            // Estrela na bandeira
+            ctx.fillStyle = '#ffeb3b';
+            ctx.font = '20px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('★', flagX + 30, flagY + 20 + flagHeight / 2);
+
             // Player (Mario)
             const px = player.x;
             const py = player.y;
@@ -851,7 +1044,7 @@
                 ctx.textBaseline = 'middle';
                 ctx.shadowColor = 'black';
                 ctx.shadowBlur = 16;
-                const msg = win ? '🌟 VITÓRIA! Te amo! 💖' : '💀 GAME OVER';
+                const msg = win ? '🌟 VITÓRIA! Bandeira levantada! 💖' : '💀 GAME OVER';
                 ctx.fillText(msg, WORLD_WIDTH / 2, canvas.height / 2 - 20);
                 ctx.font = '24px Arial';
                 ctx.fillText('Clique em "Reiniciar" para jogar novamente', WORLD_WIDTH / 2, canvas.height / 2 + 50);
@@ -860,7 +1053,7 @@
 
             ctx.restore();
 
-            // Barra de progresso (mostra a distância percorrida)
+            // Barra de progresso
             const progress = Math.min(1, player.x / WORLD_WIDTH);
             ctx.fillStyle = 'rgba(0,0,0,0.4)';
             ctx.fillRect(10, 10, 160, 12);
@@ -920,7 +1113,17 @@
             }
         }, { passive: false });
 
-        // Iniciar
+        // --- Botão para abrir o jogo ---
+        const abrirJogo = document.getElementById("abrirJogo");
+        const gameWrapper = document.getElementById("gameWrapper");
+
+        abrirJogo.addEventListener('click', () => {
+            gameWrapper.style.display = "block";
+            abrirJogo.style.display = "none";
+            gameWrapper.scrollIntoView({ behavior: "smooth" });
+        });
+
+        // --- Inicializar o jogo ---
         initGame();
         gameLoop();
     </script>
