@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Para Geovanna ❤️ + Jogo da Gata</title>
     <style>
         /* ========== ESTILOS GERAIS ========== */
@@ -24,6 +24,8 @@
             padding: 16px;
             position: relative;
             overflow-x: hidden;
+            touch-action: manipulation;
+            /* melhora toque no celular */;
         }
 
         @keyframes gradiente {
@@ -226,6 +228,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 16px;
         }
 
         canvas {
@@ -237,6 +240,8 @@
             aspect-ratio: 800 / 400;
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
+            touch-action: none;
+            /* evita scroll no canvas */;
         }
 
         .info-panel {
@@ -244,7 +249,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 16px;
             padding: 10px 20px;
             background: #0f3460;
             border-radius: 12px;
@@ -360,6 +364,62 @@
             transform: scale(1.05);
         }
 
+        /* ========== CONTROLES DE TOQUE (botões na tela) ========== */
+        .touch-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            gap: 12px;
+            padding: 8px 4px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+        }
+
+        .touch-controls .dir-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .touch-btn {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            border: 3px solid rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 2.4rem;
+            font-weight: bold;
+            width: 75px;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 0 rgba(0, 0, 0, 0.2);
+            transition: all 0.05s ease;
+            touch-action: none;
+            cursor: pointer;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .touch-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .touch-btn.jump {
+            background: rgba(233, 69, 96, 0.8);
+            border-color: #fff;
+            width: 100px;
+            height: 100px;
+            font-size: 2.8rem;
+            border-radius: 50%;
+        }
+
+        .touch-btn span {
+            line-height: 1;
+        }
+
         /* ========== RESPONSIVO ========== */
         @media (max-width: 600px) {
             .card {
@@ -392,6 +452,17 @@
             .controls {
                 justify-content: center;
             }
+
+            .touch-btn {
+                width: 65px;
+                height: 65px;
+                font-size: 2rem;
+            }
+            .touch-btn.jump {
+                width: 80px;
+                height: 80px;
+                font-size: 2.4rem;
+            }
         }
 
         @media (max-width: 380px) {
@@ -404,6 +475,16 @@
             .message-box {
                 max-height: 200px;
                 padding: 12px 14px;
+            }
+            .touch-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
+            }
+            .touch-btn.jump {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
             }
         }
     </style>
@@ -420,7 +501,7 @@
         <div class="slideshow-container">
             <!-- ★★★ SUBSTITUA PELOS CAMINHOS DAS SUAS FOTOS ★★★ -->
             <img src="./img/imagem1.jpg" alt="Geovanna 1" class="slide active" />
-            <img src="./img/imagem12.jpeg" alt="Geovanna 2" class="slide" />
+            <img src="./img/imagem 12.jpeg" alt="Geovanna 2" class="slide" />
             <img src="./img/imagem14.jpeg" alt="Geovanna 3" class="slide" />
         </div>
 
@@ -466,6 +547,15 @@
                 </div>
 
                 <button class="btn-restart" id="restartBtn">🔁 Reiniciar</button>
+            </div>
+
+            <!-- ===== BOTÕES DE TOQUE (celular) ===== -->
+            <div class="touch-controls" id="touchControls">
+                <div class="dir-group">
+                    <button class="touch-btn" id="btnLeft">◀</button>
+                    <button class="touch-btn" id="btnRight">▶</button>
+                </div>
+                <button class="touch-btn jump" id="btnJump">⬆</button>
             </div>
         </div>
     </div>
@@ -722,7 +812,7 @@
         }
 
         function showCatMessage(text, imageUrl) {
-            catText.innerHTML = `${text} <span>❤️ da sua gata</span>`;
+            catText.innerHTML = `${text} <span>❤️ Fábio Resende</span>`;
             if (imageUrl) catImage.src = imageUrl;
             const panel = document.getElementById('catMessage');
             panel.style.transform = 'scale(1.05)';
@@ -826,7 +916,6 @@
                 }
                 // Se não estiver em nenhuma plataforma, inverte (caiu? mas não tratamos)
                 if (!onPlatform) {
-                    // Inverte direção para não sumir
                     enemy.direction *= -1;
                 }
 
@@ -1074,7 +1163,7 @@
             requestAnimationFrame(gameLoop);
         }
 
-        // --- Controles ---
+        // --- Controles de teclado ---
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') keys.left = true;
             if (e.key === 'ArrowRight') keys.right = true;
@@ -1093,6 +1182,52 @@
             }
         });
 
+        // --- Controles de toque (botões) ---
+        const btnLeft = document.getElementById('btnLeft');
+        const btnRight = document.getElementById('btnRight');
+        const btnJump = document.getElementById('btnJump');
+
+        function setupTouchButton(btn, onStart, onEnd) {
+            btn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                onStart();
+            }, { passive: false });
+            btn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                onEnd();
+            }, { passive: false });
+            btn.addEventListener('touchcancel', (e) => {
+                e.preventDefault();
+                onEnd();
+            }, { passive: false });
+            // Para mouse (clique)
+            btn.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                onStart();
+            });
+            btn.addEventListener('mouseup', (e) => {
+                e.preventDefault();
+                onEnd();
+            });
+            btn.addEventListener('mouseleave', (e) => {
+                onEnd();
+            });
+        }
+
+        setupTouchButton(btnLeft,
+            () => { keys.left = true; },
+            () => { keys.left = false; }
+        );
+        setupTouchButton(btnRight,
+            () => { keys.right = true; },
+            () => { keys.right = false; }
+        );
+        setupTouchButton(btnJump,
+            () => { keys.up = true; },
+            () => { keys.up = false; }
+        );
+
+        // --- Reiniciar ---
         document.getElementById('restartBtn').addEventListener('click', () => {
             initGame();
             keys.left = false;
@@ -1100,6 +1235,7 @@
             keys.up = false;
         });
 
+        // Clique no canvas também pode pular (para desktop)
         canvas.addEventListener('click', () => {
             if (!gameOver) {
                 keys.up = true;
@@ -1107,6 +1243,7 @@
             }
         });
 
+        // Prevenir scroll com teclas
         window.addEventListener('keydown', (e) => {
             if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
                 e.preventDefault();
